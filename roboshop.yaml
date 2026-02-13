@@ -1,5 +1,4 @@
 - name: creating instances
-  become: yes
   hosts: all
   connection: local
   vars:
