@@ -15,6 +15,7 @@
       name: "{{ item }}-{{ env }}"
       instance_type: t3.micro
       image_id: "{{ ami_id }}"
+      region: us-east-1
       security_group: "{{ sg_id }}"
       tags:
        project: roboshop
