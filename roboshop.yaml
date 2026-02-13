@@ -1,0 +1,26 @@
+- name: creating instances
+  become: yes
+  hosts: all
+  connection: local
+  vars:
+    sg_id: "sg-0759ad8dc1a8ac235"
+    ami_id: "ami-0220d79f3f480ecf5"
+    env: "dev"
+    instances:
+     - mongodb
+     - catalogue
+  tasks:
+   - name: crate ec2 instances
+     amazon.aws.ec2_instance:
+      name: "{{ item }}-{{ env }}"
+      instance_type: t3.micro
+      image_id: "{{ ami_i }}"
+      security_group: "{{ sg_id }}"
+      tags:
+       project: roboshop
+       name: "{{ item }}-{{ env }} "
+       component: "{{ item }}"
+       Environment: "{{ env }}"
+     loop: instances
+     register: ec2_output  
+
