@@ -21,6 +21,6 @@
        name: "{{ item }}-{{ env }} "
        component: "{{ item }}"
        Environment: "{{ env }}"
-     loop: instances
+     loop: "{{ instances }}"
      register: ec2_output  
 
