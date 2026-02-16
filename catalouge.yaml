@@ -1,5 +1,5 @@
 - name: catalouge instance creation
-  hosts: catalogue
+  hosts: catalouge
   become: yes
   tasks:
 
