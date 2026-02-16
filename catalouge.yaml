@@ -1,0 +1,37 @@
+- name: catalouge instance creation
+  hosts: catalogue
+  become: yes
+  tasks:
+
+  - name: enable node version
+    ansible.builtin.command: dnf module install nodejs:20 -y
+   
+  - name: install nodejs
+    ansible.builtin.dnf:
+     name: nodejs 
+     state: present
+
+  - name: create system user
+    ansible.builtin.user:
+     name: roboshop 
+     ssysteme: yes
+     home: /app
+     shell: /sbin/nologin
+     comment: "roboshop system user" 
+
+  - name: createa directory
+    ansible.builtin.service:
+     path: /app 
+     state: directory
+
+  - name: get url
+    ansible.builtin.get_url:
+     url: https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
+     dest: tmp/catalogue.zip
+
+  - name: unarchive file  
+    ansible.builtin.unarchive:
+     src: /tmp/catalogue.zip
+     dest: /app
+
+  
