@@ -20,7 +20,7 @@
      comment: "roboshop system user" 
 
   - name: createa directory
-    ansible.builtin.service:
+    ansible.builtin.file:
      path: /app 
      state: directory
 
