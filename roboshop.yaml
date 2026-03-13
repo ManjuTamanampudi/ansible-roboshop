@@ -17,7 +17,6 @@
       image_id: "{{ ami_id }}"
       region: us-east-1
       security_group: "{{ sg_id }}"
-      overwrite: true
       tags:
        project: roboshop
        name: "{{ item }}-{{ env }} "
