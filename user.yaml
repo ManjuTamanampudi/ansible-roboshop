@@ -61,7 +61,7 @@
    - name: Start service user
      ansible.builtin.service:
      name: user
-     state: started
+     state: present
      enabled: yes
 
     
