@@ -64,7 +64,7 @@
      msg: "{{ output_catalogue }}"   
 
   - name: load data to mongodb
-    ansible.builtin.shell: mongosh --host "{{ MONGODB_HOST }}"" </app/db/master-data.js
+    ansible.builtin.shell: mongosh --host "{{ MONGODB_HOST }}" </app/db/master-data.js
     when: output_catalogue.stdout | int < 0
 
   - name: Reload systemd 
