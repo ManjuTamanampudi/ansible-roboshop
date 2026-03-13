@@ -1,0 +1,30 @@
+- name: redis instance creation
+  hosts: redis
+  become: yes
+
+  tasks:
+   - name: enable redis
+     ansible.builtin.command: dnf module enable redis:7 -y
+     
+   - name: install redis
+     ansible.builtin.dnf:
+      name: redis
+      state: present   
+
+   - name: replace to allow all ip address
+     ansible.builtin.replace:
+      path: /etc/redis/redis.conf
+      regexp: 127.0.0.1
+      replace: 0.0.0.0 
+
+   - name: install redis
+     ansible.builtin.lineinfile:
+      path: /etc/redis/redis.conf
+      regexp: protected-mode
+      replace: protected-mode no 
+
+   - name: start redis
+     ansible.builtin.dnf:
+      name: redis
+      state: started
+      enabled: yes

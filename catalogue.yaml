@@ -41,7 +41,7 @@
       state: present  
 
   - name: Copy a catalogue service file
-    ansible.builtin.copy:
+    ansible.builtin.template:
       src: catalogue.service   # Path on the control machine
       dest: /etc/systemd/system/catalogue.service # Path on the remote host
 
