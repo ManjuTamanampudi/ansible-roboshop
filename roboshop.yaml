@@ -17,6 +17,7 @@
       image_id: "{{ ami_id }}"
       region: us-east-1
       security_group: "{{ sg_id }}"
+      overwrite: true
       tags:
        project: roboshop
        name: "{{ item }}-{{ env }} "
@@ -38,6 +39,7 @@
        record: "{{ item.item }}-{{ env }}.{{ domain_name }}"
        type: A
        ttl: 1
+       overwrite: true
        value: "{{ item.instances[0].private_ip_address }}"
        wait: true  
      loop: "{{ ec2_output.results }}" 
@@ -53,7 +55,8 @@
        type: A
        ttl: 1
        value: "{{ item.instances[0].public_ip_address }}"
-       wait: true  
+       wait: true 
+       overwrite: true 
      loop: "{{ ec2_output.results }}" 
      when: 
       - item.item != "frontend"
