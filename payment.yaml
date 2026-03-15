@@ -5,12 +5,12 @@
    
     - name: install maven and mysql 
       ansible.builtin.dnf:
-      name: "{{ item }}" 
-      state: present
+       name: "{{ item }}" 
+       state: present
       loop:
-       - python3 
-       - gcc 
-       - python3-devel
+        - python3 
+        - gcc 
+        - python3-devel
 
     - name: create system payment roboshop
       ansible.builtin.user:
