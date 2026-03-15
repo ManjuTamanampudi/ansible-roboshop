@@ -1,0 +1,5 @@
+- name: payment creation
+  hosts: payment
+  become: yes
+  tasks:
+   
